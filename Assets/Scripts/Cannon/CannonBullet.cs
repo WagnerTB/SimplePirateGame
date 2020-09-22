@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody))]
 public class CannonBullet : MonoBehaviour
 {
     public float speed = 10;
     public float bulletDamage = 3;
     public float timeToDestroy = 3;
-    public Rigidbody2D rb;
+    public Rigidbody rb;
 
     private void Start()
     {
@@ -24,18 +24,18 @@ public class CannonBullet : MonoBehaviour
             this.bulletDamage = damage;
 
 
-        var direction = transform.right * speed;
+        var direction = transform.up * speed;
         rb.AddForce(direction);
     }
 
 
     private void Reset()
     {
-        var rb = GetComponent<Rigidbody2D>();
+        var rb = GetComponent<Rigidbody>();
         if(rb != null)
         {
             this.rb = rb;
-            rb.gravityScale = 0;
+            rb.useGravity = false;
         }
     }
 

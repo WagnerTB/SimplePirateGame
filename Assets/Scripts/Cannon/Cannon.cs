@@ -15,13 +15,15 @@ public class Cannon : MonoBehaviour
     public Transform bulletPivot;
     public CannonBullet cannonBullet;
 
-    private void Update()
+    private void FixedUpdate()
     {
         FireCooldown();
     }
 
     private void FireCooldown()
     {
+        if (canShoot) return;
+
         if(_elapsedTime < fireRate)
         {
             _elapsedTime += Time.deltaTime;
@@ -37,11 +39,11 @@ public class Cannon : MonoBehaviour
     {
         if(canShoot)
         {
+            Debug.Log("Shoot!");
+            canShoot = false;
             var bullet = Instantiate(cannonBullet,bulletPivot.position,bulletPivot.rotation);
             bullet.transform.localScale = bulletPivot.lossyScale;
             bullet.InitializeBullet(bulletSpeed, bulletDamage);
-
-            canShoot = false;
             return true;
         }
         else

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -121,6 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &760512556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6305756149916583776, guid: 1da13897a285a6a4ab5609bc107ee086,
+    type: 3}
+  m_PrefabInstance: {fileID: 675728488916833744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b269e5d14c9de04b97aeaffb67108d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1812032948
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +352,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3164987042269030002, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: ownerController
+      value: 
+      objectReference: {fileID: 760512556}
+    - target: {fileID: 4237005197612297926, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: ownerController
+      value: 
+      objectReference: {fileID: 760512556}
     - target: {fileID: 5492464073255342282, guid: 1da13897a285a6a4ab5609bc107ee086,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -395,5 +417,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5492464073255342282, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492464073255342282, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492464073255342282, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655480692692022702, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: ownerController
+      value: 
+      objectReference: {fileID: 760512556}
+    - target: {fileID: 6443106522895285049, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: ownerController
+      value: 
+      objectReference: {fileID: 760512556}
+    - target: {fileID: 7625759162874753749, guid: 1da13897a285a6a4ab5609bc107ee086,
+        type: 3}
+      propertyPath: ownerController
+      value: 
+      objectReference: {fileID: 760512556}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1da13897a285a6a4ab5609bc107ee086, type: 3}

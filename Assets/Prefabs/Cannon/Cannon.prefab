@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownerController: {fileID: 0}
   fireRate: 1
-  bulletSpeed: 10
+  bulletSpeed: 100
   bulletPivot: {fileID: 4806757401411181048}
   cannonBullet: {fileID: 6888650128991302419, guid: 146ed763d1711c84c8bac9136a1dc47f,
     type: 3}

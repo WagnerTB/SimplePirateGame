@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public BasicController ownerController;
+    [Header("Cannon")]
     public float fireRate = 1;
+    [SerializeField] private bool canShoot;
+    private float _elapsedTime = 0;
+
+    [Header("Cannon Bullet")]
     public float bulletSpeed = 10;
+    public float bulletDamage = 10;
     public Transform bulletPivot;
     public CannonBullet cannonBullet;
-
-    [SerializeField]
-    private bool canShoot;
-    private float elapsedTime = 0;
 
     private void Update()
     {
@@ -21,13 +22,13 @@ public class Cannon : MonoBehaviour
 
     private void FireCooldown()
     {
-        if(elapsedTime < fireRate)
+        if(_elapsedTime < fireRate)
         {
-            elapsedTime += Time.deltaTime;
+            _elapsedTime += Time.deltaTime;
         }
-        else if(elapsedTime >= fireRate && !canShoot)
+        else if(_elapsedTime >= fireRate && !canShoot)
         {
-            elapsedTime = 0;
+            _elapsedTime = 0;
             canShoot = true;
         }
     }
@@ -37,7 +38,10 @@ public class Cannon : MonoBehaviour
         if(canShoot)
         {
             var bullet = Instantiate(cannonBullet,bulletPivot.position,bulletPivot.rotation);
-            bullet.InitializeBullet(bulletSpeed, ownerController.damage);
+            bullet.transform.localScale = bulletPivot.lossyScale;
+            bullet.InitializeBullet(bulletSpeed, bulletDamage);
+
+            canShoot = false;
             return true;
         }
         else

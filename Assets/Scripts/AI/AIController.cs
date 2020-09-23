@@ -11,7 +11,7 @@ public class AIController : BasicController
     // Start is called before the first frame update
     void Start()
     {
-        if(aIBehaviour != null)
+        if(isAlive && aIBehaviour != null)
         {
             aIBehaviour = Instantiate(aIBehaviour);
 
@@ -23,10 +23,16 @@ public class AIController : BasicController
     // Update is called once per frame
     void Update()
     {
-        if(aIBehaviour != null)
+        if(isAlive && aIBehaviour != null)
         {
             aIBehaviour.Update();
         }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        Destroy(this.gameObject, 3);
     }
 
     private void OnDrawGizmosSelected()

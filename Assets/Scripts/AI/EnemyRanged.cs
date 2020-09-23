@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemyRanged : AIBehaviour
 {
     public float minDistance = 2;
-
+    public float cannonFireRate = 1;
+    public float bulletDamage = 1;
     private Cannon[] cannons;
 
     // Start is called before the first frame update
@@ -14,6 +15,11 @@ public class EnemyRanged : AIBehaviour
     {
         executedGo.target = FindObjectOfType<PlayerController>().transform;
         cannons = executedGo.GetComponentsInChildren<Cannon>();
+        foreach (var cannon in cannons)
+        {
+            cannon.fireRate = cannonFireRate;
+            cannon.bulletDamage = bulletDamage;
+        }
     }
 
     // Update is called once per frame

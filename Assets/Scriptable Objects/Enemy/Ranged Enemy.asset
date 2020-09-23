@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executedGo: {fileID: 0}
   minDistance: 3
+  cannonFireRate: 2
+  bulletDamage: 1

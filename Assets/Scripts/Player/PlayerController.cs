@@ -10,7 +10,10 @@ public class PlayerController : BasicController
     // Update is called once per frame
     void Update()
     {
-        CheckShoot();
+        if(isAlive)
+        {
+            CheckShoot();
+        }
     }
 
     public void CheckShoot()

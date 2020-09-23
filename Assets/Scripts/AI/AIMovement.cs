@@ -11,11 +11,9 @@ public class AIMovement : BasicMovement
 
     public bool isStopped = false;
     public float range;
-    // Start is called before the first frame update
+
     void Start()
     {
-        //Se eu deixar dentro do objeto ele "anda" 2 vezes, pq ele esta como filho nosso 
-        // dai ele fica muito mais rapido que realmente é
         agent.transform.SetParent(null);
         faceTarget = agent.transform;
         if(aIController.target != null)
@@ -26,22 +24,35 @@ public class AIMovement : BasicMovement
 
     private void FixedUpdate()
     {
+        if (!aIController.isAlive)
+        {
+            Stop();
+            return;
+        }
+
         ShipFollowAgent();
 
         if(aIController.target.position != agent.destination)
         {
             agent.SetDestination(aIController.target.position);
             agent.isStopped = false;
-
         }
-        if (agent.destination == transform.position) return;
-        if (agent.path.status == NavMeshPathStatus.PathComplete || agent.path.status == NavMeshPathStatus.PathPartial)
+
+        if (agent.destination != transform.position)
         {
-            if(agent.remainingDistance < range)
+            if (agent.path.status == NavMeshPathStatus.PathComplete || agent.path.status == NavMeshPathStatus.PathPartial)
             {
-                agent.velocity = Vector3.zero;
-                agent.isStopped = true;
+                if(agent.remainingDistance < range)
+                {
+                    agent.velocity = Vector3.zero;
+                    agent.isStopped = true;
+                }
             }
+        }
+
+        if(NavMesh.Raycast(agent.transform.position,transform.position,out NavMeshHit hit,NavMesh.AllAreas))
+        {
+            agent.Warp(transform.position);
         }
     }
 

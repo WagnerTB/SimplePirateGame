@@ -23,7 +23,6 @@ public class Ship : MonoBehaviour
             _basicController.onHeal += UpdateShip;
 
             percentagePerState = 1f / _statesCount;
-            Debug.Log("Percenatage " + percentagePerState);
         }
     }
 

@@ -6,6 +6,7 @@ public class BasicController : MonoBehaviour
 {
     public float hp = 10;
     public float maxHp = 10;
+    public bool isAlive = true;
 
     public delegate void StatusChange(float amountChange);
     public StatusChange onHeal;
@@ -36,9 +37,9 @@ public class BasicController : MonoBehaviour
         onDamage?.Invoke(amount);
     }
 
-    public void Die()
+    public virtual void Die()
     {
-
+        isAlive = false;
     }
 
 

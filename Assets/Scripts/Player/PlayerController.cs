@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class PlayerController : BasicController
 {
+    public PlayerMovement playerMovement;
+
     public Cannon frontalCannon;
     public Cannon[] lateralCannons;
+
+    protected override void RegisterEvent()
+    {
+        base.RegisterEvent();
+
+        GameManager.onEnd += playerMovement.Stop;
+    }
+
+    protected override void UnRegisterEvent()
+    {
+        base.UnRegisterEvent();
+
+        GameManager.onEnd -= playerMovement.Stop;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if(isAlive)
+        if(isActive)
         {
             CheckShoot();
         }

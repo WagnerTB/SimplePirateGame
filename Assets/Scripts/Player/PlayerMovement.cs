@@ -7,13 +7,11 @@ public class PlayerMovement : BasicMovement
     public PlayerController playerController;
     public Bounds bounds;
 
-
-
     private void FixedUpdate()
     {
-
         RestrictMovement();
-        if (playerController.isAlive)
+
+        if (playerController.isActive)
         {
             var Horizontal = Input.GetAxis("Horizontal");
             var Vertical = Input.GetAxis("Vertical");

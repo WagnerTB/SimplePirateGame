@@ -11,7 +11,7 @@ public class AIController : BasicController
     // Start is called before the first frame update
     void Start()
     {
-        if(isAlive && aIBehaviour != null)
+        if(isActive && aIBehaviour != null)
         {
             aIBehaviour = Instantiate(aIBehaviour);
 
@@ -23,7 +23,7 @@ public class AIController : BasicController
     // Update is called once per frame
     void Update()
     {
-        if(isAlive && aIBehaviour != null)
+        if(isActive && aIBehaviour != null)
         {
             aIBehaviour.Update();
         }

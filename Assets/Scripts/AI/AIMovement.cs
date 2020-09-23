@@ -24,7 +24,7 @@ public class AIMovement : BasicMovement
 
     private void FixedUpdate()
     {
-        if (!aIController.isAlive)
+        if (!aIController.isActive)
         {
             Stop();
             return;
@@ -56,10 +56,9 @@ public class AIMovement : BasicMovement
         }
     }
 
-    public void Stop()
+    public override void Stop()
     {
-        rb.drag = 1;
-        rb.angularDrag = 1;
+        base.Stop();
         isStopped = true;
     }
 

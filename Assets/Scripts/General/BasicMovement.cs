@@ -24,6 +24,12 @@ public abstract class BasicMovement : MonoBehaviour
         rb.MoveRotation(transform.rotation * deltaRotation);
     }
 
+    public virtual void Stop()
+    {
+        rb.drag = 1;
+        rb.angularDrag = 1;
+    }
+
     private void Reset()
     {
         var rb = GetComponent<Rigidbody>();

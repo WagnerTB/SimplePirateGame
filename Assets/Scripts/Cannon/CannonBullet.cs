@@ -15,6 +15,24 @@ public class CannonBullet : MonoBehaviour
     private void Start()
     {
         Destroy(this.gameObject, timeToDestroy);
+        RegisterEvent();
+    }
+
+    private void RegisterEvent()
+    {
+        GameManager.onEnd += EndGame;
+    }
+
+    private void EndGame()
+    {
+        Explode(transform.position, transform.rotation);
+        Destroy(this.gameObject);
+    }
+
+
+    private void OnDestroy()
+    {
+        GameManager.onEnd -= EndGame;
     }
 
     public void InitializeBullet(float speed = 0,float damage = 0)
@@ -30,6 +48,15 @@ public class CannonBullet : MonoBehaviour
         rb.AddForce(direction);
     }
 
+    public void Explode(Vector3 position , Quaternion rotation)
+    {
+        var explosion = Instantiate(explosionPrefab);
+        explosion.transform.position = position;
+        explosion.transform.rotation = rotation;
+        Destroy(explosion, .1f);
+        Destroy(this.gameObject);
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         var basicController = other.GetComponent<BasicController>();
@@ -38,12 +65,7 @@ public class CannonBullet : MonoBehaviour
             basicController.Damage(bulletDamage);
         }
 
-        var explosion = Instantiate(explosionPrefab);
-        explosion.transform.position = transform.position;
-        explosion.transform.rotation = transform.rotation;
-        Destroy(explosion, .1f);
-        Destroy(this.gameObject);
-
+        Explode(transform.position, transform.rotation);
     }
 
 

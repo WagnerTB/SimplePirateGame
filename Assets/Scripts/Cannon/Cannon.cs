@@ -15,6 +15,9 @@ public class Cannon : MonoBehaviour
     public Transform bulletPivot;
     public CannonBullet cannonBullet;
 
+    [Header("Cannon VFX")]
+    public CannonFireVFX FireVfx;
+
     private void FixedUpdate()
     {
         FireCooldown();
@@ -39,11 +42,12 @@ public class Cannon : MonoBehaviour
     {
         if(canShoot)
         {
-            Debug.Log("Shoot!");
             canShoot = false;
             var bullet = Instantiate(cannonBullet,bulletPivot.position,bulletPivot.rotation);
             bullet.transform.localScale = bulletPivot.lossyScale;
             bullet.InitializeBullet(bulletSpeed, bulletDamage);
+
+            FireVfx.Play();
             return true;
         }
         else

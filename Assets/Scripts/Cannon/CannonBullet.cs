@@ -10,6 +10,8 @@ public class CannonBullet : MonoBehaviour
     public float timeToDestroy = 3;
     public Rigidbody rb;
 
+    public GameObject explosionPrefab;
+
     private void Start()
     {
         Destroy(this.gameObject, timeToDestroy);
@@ -26,6 +28,22 @@ public class CannonBullet : MonoBehaviour
 
         var direction = transform.up * speed;
         rb.AddForce(direction);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        var basicController = other.GetComponent<BasicController>();
+        if (basicController != null)
+        {
+            basicController.Damage(bulletDamage);
+        }
+
+        var explosion = Instantiate(explosionPrefab);
+        explosion.transform.position = transform.position;
+        explosion.transform.rotation = transform.rotation;
+        Destroy(explosion, .1f);
+        Destroy(this.gameObject);
+
     }
 
 

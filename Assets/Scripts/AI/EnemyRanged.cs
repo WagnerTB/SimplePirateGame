@@ -12,6 +12,7 @@ public class EnemyRanged : AIBehaviour
     // Start is called before the first frame update
     public override void Start()
     {
+        executedGo.target = FindObjectOfType<PlayerController>().transform;
         cannons = executedGo.GetComponentsInChildren<Cannon>();
     }
 

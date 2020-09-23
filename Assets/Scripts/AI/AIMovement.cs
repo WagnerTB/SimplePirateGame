@@ -41,7 +41,6 @@ public class AIMovement : BasicMovement
             {
                 agent.velocity = Vector3.zero;
                 agent.isStopped = true;
-                Debug.Log("Cheguei na distancia minima!");
             }
         }
     }

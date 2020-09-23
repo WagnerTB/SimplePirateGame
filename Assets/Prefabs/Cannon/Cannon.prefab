@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3293723220810018530}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071069}
-  m_LocalPosition: {x: 0.228, y: 0, z: 0}
+  m_LocalPosition: {x: 0.386, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8865814057299324845}
@@ -60,6 +60,7 @@ Transform:
   m_Children:
   - {fileID: 6417971259467652803}
   - {fileID: 4806757401411181048}
+  - {fileID: 7644949716222011723}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,10 +79,11 @@ MonoBehaviour:
   fireRate: 1
   canShoot: 0
   bulletSpeed: 200
-  bulletDamage: 10
+  bulletDamage: 1
   bulletPivot: {fileID: 4806757401411181048}
   cannonBullet: {fileID: 6888650128991302419, guid: 146ed763d1711c84c8bac9136a1dc47f,
     type: 3}
+  FireVfx: {fileID: 2806321829827283521}
 --- !u!1 &7489506860381526362
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,3 +165,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1001 &1170485618370930725
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8865814057299324845}
+    m_Modifications:
+    - target: {fileID: 1822379843006214301, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_Name
+      value: Cannon Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.226
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.70710576
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071079
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90.00001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8955bd16344a4df4bae68cfd05f0a0d8, type: 3}
+--- !u!4 &7644949716222011723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8801783221584986478, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1170485618370930725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2806321829827283521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3948646018726519396, guid: 8955bd16344a4df4bae68cfd05f0a0d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1170485618370930725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a59d210aaaeb543aa9d392dd04350a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

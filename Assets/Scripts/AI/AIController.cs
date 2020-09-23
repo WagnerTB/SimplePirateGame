@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIController : MonoBehaviour
+public class AIController : BasicController
 {
     public Transform target;
     public AIBehaviour aIBehaviour;

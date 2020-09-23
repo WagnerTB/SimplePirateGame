@@ -304,9 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   startDelay: 1
-  enemySpawnTime: 10
-  gameSessionTime: 30
   gameElapsedTime: 0
+  gameSessionTime: 30
+  enemySpawnTime: 10
   spawnManager: {fileID: 1815989741}
 --- !u!1 &116314720
 GameObject:

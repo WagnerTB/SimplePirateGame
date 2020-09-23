@@ -41,10 +41,14 @@ public class GameManager : MonoBehaviour
     public static GameStatus onPause;
     public static GameStatus onEnd;
 
+    public delegate void GameEvents();
+    public static GameEvents onEnemyDie;
+
     public float startDelay = 1;
-    public float enemySpawnTime = 1;
-    public float gameSessionTime = 30;
     public float gameElapsedTime = 0;
+
+    [SerializeField] private float gameSessionTime = 30;
+    [SerializeField] private float enemySpawnTime = 1;
 
     public SpawnManager spawnManager;
 
@@ -60,14 +64,12 @@ public class GameManager : MonoBehaviour
         if(currentState == GameState.Playing)
             CheckGameSessionTime();
     }
-
     
     public void BeginGame()
     {
         spawnManager.BeginEnemySpawn(enemySpawnTime);
         currentState = GameState.Playing;
     }
-
 
     private void CheckGameSessionTime()
     {
@@ -79,5 +81,25 @@ public class GameManager : MonoBehaviour
         {
             onEnd?.Invoke();
         }
+    }
+
+    public void SetGameSession(float gameSession)
+    {
+        float minGameSessionTime = 1;
+        float maxGameSessionTime = 3;
+        this.gameSessionTime = Mathf.Clamp(gameSession, minGameSessionTime, maxGameSessionTime);
+    }
+
+    public void SetEnemySpawnTime(float time)
+    {
+        float minEnemySpawnTime = 1;
+
+        if(time < minEnemySpawnTime)
+        {
+            Debug.Log("<color=red>Enemy Spawn time need to be at least "+ minEnemySpawnTime + " per second</color>");
+            return;
+        }
+
+        enemySpawnTime = time;
     }
 }

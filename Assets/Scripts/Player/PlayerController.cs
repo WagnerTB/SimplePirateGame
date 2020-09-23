@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class PlayerController : BasicController
 {
-    public PlayerMovement playerMovement;
+    [SerializeField] private PlayerMovement playerMovement;
 
-    public Cannon frontalCannon;
-    public Cannon[] lateralCannons;
+    [SerializeField] private float frontalCannonDamage;
+    [SerializeField] private float lateralCannonsDamage;
+
+    [SerializeField] private Cannon frontalCannon;
+    [SerializeField] private Cannon[] lateralCannons;
+
+    [SerializeField] private int playerScore = 0;
+    [SerializeField] private PlayerUI playerUI;
 
     protected override void RegisterEvent()
     {
         base.RegisterEvent();
 
         GameManager.onEnd += playerMovement.Stop;
+        GameManager.onEnemyDie += Score;
     }
 
     protected override void UnRegisterEvent()
@@ -21,13 +28,28 @@ public class PlayerController : BasicController
         base.UnRegisterEvent();
 
         GameManager.onEnd -= playerMovement.Stop;
+        GameManager.onEnemyDie -= Score;
     }
 
+    private void Start()
+    {
+        UpdateCannonsDamage();
+    }
+
+        
+    private void UpdateCannonsDamage()
+    {
+        frontalCannon.bulletDamage = frontalCannonDamage;
+        foreach (var cannon in lateralCannons)
+        {
+            cannon.bulletDamage = lateralCannonsDamage;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if(isActive)
+        if (isActive)
         {
             CheckShoot();
         }
@@ -48,7 +70,7 @@ public class PlayerController : BasicController
 
     public void FrontalShoot()
     {
-        if(frontalCannon != null)
+        if (frontalCannon != null)
         {
             frontalCannon.ShootCannon();
         }
@@ -58,10 +80,16 @@ public class PlayerController : BasicController
     {
         foreach (var cannon in lateralCannons)
         {
-            if(cannon != null)
+            if (cannon != null)
             {
                 cannon.ShootCannon();
             }
         }
+    }
+
+    public void Score()
+    {
+        playerScore++;
+        playerUI.UpdateScore(playerScore);
     }
 }

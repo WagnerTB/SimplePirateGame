@@ -32,6 +32,7 @@ public class AIController : BasicController
     public override void Die()
     {
         base.Die();
+        GameManager.onEnemyDie?.Invoke();
         Destroy(this.gameObject, 3);
     }
 

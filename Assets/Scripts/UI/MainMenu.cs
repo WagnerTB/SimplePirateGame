@@ -8,8 +8,19 @@ public class MainMenu : MonoBehaviour
     public Animator animator;
 
     [Header("Options")]
-    public TMPro.TMP_InputField gameSessionInputField;
-    public TMPro.TMP_InputField enemySpawnTimeInputField;
+    public TMP_InputField gameSessionInputField;
+    public TMP_InputField enemySpawnTimeInputField;
+
+    private void Start()
+    {
+        if(GameManager.gameSessionTime <=0)
+            GameManager.SetGameSession(60);
+
+        if(GameManager.enemySpawnTime <= 0)
+            GameManager.SetEnemySpawnTime(1);
+
+        UpdateInputField();
+    }
 
 
     public void PlayGame()
@@ -39,6 +50,14 @@ public class MainMenu : MonoBehaviour
 
         if (IsNumber(enemySpawnTimeTxt, out float enemySpawnTimeNumber))
             GameManager.SetEnemySpawnTime(enemySpawnTimeNumber);
+
+        UpdateInputField();
+    }
+
+    private void UpdateInputField()
+    {
+        gameSessionInputField.text = GameManager.gameSessionTime.ToString();
+        enemySpawnTimeInputField.text = GameManager.enemySpawnTime.ToString();
     }
 
     public bool IsNumber(string text, out float number)

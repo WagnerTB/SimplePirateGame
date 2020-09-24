@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Ranged Enemy " , menuName = "Enemy/Ranged")]
-public class EnemyRanged : AIBehaviour
+[CreateAssetMenu(fileName = "New Enemy Ranged", menuName = "Enemy/Ranged")]
+public class RangedEnemy : AIBehaviour
 {
     [Space]
     public float minDistance = 2;

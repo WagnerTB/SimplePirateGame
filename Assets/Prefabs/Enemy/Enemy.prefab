@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7485441465802910069}
   - component: {fileID: 7485441465802910025}
   - component: {fileID: 7485441465802910068}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   _stopDistance: 0
   _agentMaxDistance: 3
   _deathZone: 0.2
+  _faceRotateSpeed: 3
   _aiController: {fileID: 0}
   agent: {fileID: 7485441466857306364}
   faceTarget: {fileID: 0}
@@ -117,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7485441466857306365}
   - component: {fileID: 7485441466857306364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +152,7 @@ NavMeshAgent:
   m_Speed: 2
   m_Acceleration: 30
   avoidancePriority: 50
-  m_AngularSpeed: 0
+  m_AngularSpeed: 150
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -172,6 +173,16 @@ PrefabInstance:
       propertyPath: basicController
       value: 
       objectReference: {fileID: 7485441465802910027}
+    - target: {fileID: 1701543292843886235, guid: d43af3c65fa3f9747a83e50e9912038a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2443053054541152302, guid: d43af3c65fa3f9747a83e50e9912038a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2482841808245267823, guid: d43af3c65fa3f9747a83e50e9912038a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -277,10 +288,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3782915863392738802, guid: d43af3c65fa3f9747a83e50e9912038a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4661427630926925649, guid: d43af3c65fa3f9747a83e50e9912038a,
         type: 3}
       propertyPath: m_Name
       value: HealthBar Pirates Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661427630926925649, guid: d43af3c65fa3f9747a83e50e9912038a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d43af3c65fa3f9747a83e50e9912038a, type: 3}

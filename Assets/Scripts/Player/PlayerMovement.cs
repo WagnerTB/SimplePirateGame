@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : BasicMovement
 {
+    [Space]
+    [Header("Movement Limit Config")]
+    public Bounds playerMovementLimits;
+
+    [Header("References")]
     public PlayerController playerController;
-    public Bounds bounds;
 
     private void FixedUpdate()
     {
@@ -23,15 +27,15 @@ public class PlayerMovement : BasicMovement
 
     private void RestrictMovement()
     {
-        var clampedPosition = new Vector3(Mathf.Clamp(transform.position.x, bounds.center.x - bounds.extents.x, bounds.center.x + bounds.extents.x),
+        var clampedPosition = new Vector3(Mathf.Clamp(transform.position.x, playerMovementLimits.center.x - playerMovementLimits.extents.x, playerMovementLimits.center.x + playerMovementLimits.extents.x),
                                           transform.position.y,
-                                          Mathf.Clamp(transform.position.z, bounds.center.z - bounds.extents.z, bounds.center.z + bounds.extents.z));
+                                          Mathf.Clamp(transform.position.z, playerMovementLimits.center.z - playerMovementLimits.extents.z, playerMovementLimits.center.z + playerMovementLimits.extents.z));
         transform.position = clampedPosition;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(Vector3.zero, bounds.extents * 2);
+        Gizmos.DrawWireCube(Vector3.zero, playerMovementLimits.extents * 2);
     }
 }

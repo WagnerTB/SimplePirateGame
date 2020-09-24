@@ -65,6 +65,8 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
+        if (GameManager.Instance.currentState != GameManager.GameState.Playing) return;
+
         var rnd = UnityEngine.Random.Range(0, enemies.Length);
         var enemy = Instantiate(enemies[rnd]);
         enemy.transform.position = GetPoint().RequestPosition();

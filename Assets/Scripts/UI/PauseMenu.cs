@@ -8,19 +8,37 @@ public class PauseMenu : MonoBehaviour
     public Animator animator;
     public bool isOpen = false;
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+        GameManager.onEndGame += EndGame;
+    }
+
+    private void OnDestroy()
+    {
+        Time.timeScale = 1;
+        GameManager.onEndGame -= EndGame;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.currentState != GameManager.GameState.End && Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager.Instance.currentState != GameManager.GameState.End && Input.GetKeyDown(KeyCode.Escape))
         {
             isOpen = !isOpen;
             SetOpenMenu(isOpen);
         }
     }
 
+    private void EndGame()
+    {
+        if(this != null && isOpen)
+            SetOpenMenu(false);
+    }
+
     public void SetOpenMenu(bool isOpen)
     {
-        if(isOpen)
+        if (isOpen)
         {
             animator.SetTrigger("Open");
             GameManager.Instance.currentState = GameManager.GameState.Pause;
@@ -32,6 +50,8 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.currentState = GameManager.GameState.Playing;
             Time.timeScale = 1;
         }
+
+        this.isOpen = isOpen;
     }
 
 
@@ -44,10 +64,4 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
 }

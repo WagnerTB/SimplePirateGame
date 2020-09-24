@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Chaser Enemy ", menuName = "Enemy/Chaser")]
-public class EnemyChaser : AIBehaviour
+[CreateAssetMenu(fileName = "New Enemy Chaser  ", menuName = "Enemy/Chaser")]
+public class ChaserEnemy : AIBehaviour
 {
     [Space]
     public float explosionDamage = 2;
@@ -26,7 +26,6 @@ public class EnemyChaser : AIBehaviour
                 {
                     var center = executedGo.gameObject.transform.position;
                     rb.AddExplosionForce(explosionForce, center, explosionRange);
-                    Debug.Log("BOOM!");
                 }
 
                 Explode();

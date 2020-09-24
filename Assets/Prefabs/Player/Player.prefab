@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 287335456}
   - component: {fileID: 287335459}
   m_Layer: 5
-  m_Name: UI Canvas
+  m_Name: Player UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -403,19 +403,19 @@ MonoBehaviour:
   hp: 100
   maxHp: 100
   isActive: 1
-  playerMovement: {fileID: 1803873034290420636}
-  frontalCannonDamage: 20
-  lateralCannonsDamage: 5
-  frontalCannon: {fileID: 5655480692692022702}
-  lateralCannons:
+  _playerScore: 0
+  _frontalCannonDamage: 20
+  _lateralCannonsDamage: 5
+  _lateralCannons:
   - {fileID: 4237005197612297926}
   - {fileID: 7625759162874753749}
+  - {fileID: 3379755437448418725}
   - {fileID: 6443106522895285049}
   - {fileID: 3164987042269030002}
-  - {fileID: 3379755437448418725}
   - {fileID: 8784961389153436510}
-  _playerScore: 0
-  playerUI: {fileID: 287335459}
+  _frontalCannon: {fileID: 5655480692692022702}
+  _playerMovement: {fileID: 1803873034290420636}
+  _playerUI: {fileID: 287335459}
 --- !u!114 &1803873034290420636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,10 +432,10 @@ MonoBehaviour:
   maxSpeed: 1
   rotateSpeed: 50
   rb: {fileID: 439099415}
-  playerController: {fileID: 6305756149916583776}
-  bounds:
-    m_Center: {x: 0, y: 1.3, z: 0}
+  playerMovementLimits:
+    m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 7, y: 1, z: 7}
+  playerController: {fileID: 6305756149916583776}
 --- !u!1 &2004737910352225776
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,6 +90,11 @@ public class GameManager : MonoBehaviour
         {
             Initialize();
         }
+        else if(currentScene.name != "GameScene")
+        {
+            spawnManager.StopAllCoroutines();
+            currentState = GameState.PreBegin;
+        }
     }
 
     private void Initialize()

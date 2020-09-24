@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class PlayerController : BasicController
 {
-    [SerializeField] private PlayerMovement playerMovement;
-
-    [SerializeField] private float frontalCannonDamage;
-    [SerializeField] private float lateralCannonsDamage;
-
-    [SerializeField] private Cannon frontalCannon;
-    [SerializeField] private Cannon[] lateralCannons;
-
     public int playerScore { get; private set; }
+
+    [Header("Info")]
     [SerializeField] private int _playerScore = 0;
-    [SerializeField] private PlayerUI playerUI;
+
+    [Space]
+    [Header("Player Config")]
+    [SerializeField] private float _frontalCannonDamage;
+    [SerializeField] private float _lateralCannonsDamage;
+
+    [Header("References")]
+    [SerializeField] private Cannon[] _lateralCannons;
+    [SerializeField] private Cannon _frontalCannon;
+    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private PlayerUI _playerUI;
 
     protected override void RegisterEvent()
     {
         base.RegisterEvent();
 
-        GameManager.onEndGame += playerMovement.Stop;
+        GameManager.onEndGame += _playerMovement.Stop;
         GameManager.onEnemyDie += Score;
     }
 
@@ -28,7 +32,7 @@ public class PlayerController : BasicController
     {
         base.UnRegisterEvent();
 
-        GameManager.onEndGame -= playerMovement.Stop;
+        GameManager.onEndGame -= _playerMovement.Stop;
         GameManager.onEnemyDie -= Score;
     }
 
@@ -39,10 +43,10 @@ public class PlayerController : BasicController
         
     private void UpdateCannonsDamage()
     {
-        frontalCannon.bulletDamage = frontalCannonDamage;
-        foreach (var cannon in lateralCannons)
+        _frontalCannon.bulletDamage = _frontalCannonDamage;
+        foreach (var cannon in _lateralCannons)
         {
-            cannon.bulletDamage = lateralCannonsDamage;
+            cannon.bulletDamage = _lateralCannonsDamage;
         }
     }
 
@@ -70,15 +74,15 @@ public class PlayerController : BasicController
 
     public void FrontalShoot()
     {
-        if (frontalCannon != null)
+        if (_frontalCannon != null)
         {
-            frontalCannon.ShootCannon();
+            _frontalCannon.ShootCannon();
         }
     }
 
     public void LateralShoot()
     {
-        foreach (var cannon in lateralCannons)
+        foreach (var cannon in _lateralCannons)
         {
             if (cannon != null)
             {
@@ -97,6 +101,6 @@ public class PlayerController : BasicController
     {
         playerScore++;
         _playerScore = playerScore;
-        playerUI.UpdateScore(playerScore);
+        _playerUI.UpdateScore(playerScore);
     }
 }

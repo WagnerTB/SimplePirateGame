@@ -11,13 +11,15 @@ public class BendingManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if(enableBendingOnPlay)
+
+        if (Application.isPlaying)
         {
-            if (Application.isPlaying)
+            if (enableBendingOnPlay)
                 Shader.EnableKeyword(keyword);
-            else
-                Shader.DisableKeyword(keyword);
         }
+        else
+            Shader.DisableKeyword(keyword);
+
     }
 
     private void OnEnable()
@@ -29,7 +31,7 @@ public class BendingManager : MonoBehaviour
     private void OnDestroy()
     {
         RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
-        RenderPipelineManager.endCameraRendering   -= OnEndCameraRendering;
+        RenderPipelineManager.endCameraRendering -= OnEndCameraRendering;
     }
 
     private void OnBeginCameraRendering(ScriptableRenderContext ctx, Camera cam)
@@ -42,19 +44,18 @@ public class BendingManager : MonoBehaviour
         cam.ResetCullingMatrix();
     }
 
-    
-
-    [ContextMenu("Disable")]
-    public void Disable()
-    {
-        Shader.DisableKeyword(keyword);
-
-    }
 
     [ContextMenu("Enable")]
     public void Enable()
     {
         Shader.EnableKeyword(keyword);
-
     }
+
+    [ContextMenu("Disable")]
+    public void Disable()
+    {
+        Shader.DisableKeyword(keyword);
+    }
+
+    
 }

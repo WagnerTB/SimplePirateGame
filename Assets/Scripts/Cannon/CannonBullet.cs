@@ -60,7 +60,7 @@ public class CannonBullet : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         var basicController = other.GetComponent<BasicController>();
-        if (basicController != null)
+        if (basicController != null && other.gameObject.layer != this.gameObject.layer)
         {
             basicController.Damage(bulletDamage);
         }

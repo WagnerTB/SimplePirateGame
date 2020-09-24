@@ -56,9 +56,7 @@ public class GameManager : MonoBehaviour
     public static float enemySpawnTime { get; private set; }
 
     public SpawnManager spawnManager;
-
     public PlayerController player;
-
 
     private void Start()
     {
@@ -88,7 +86,6 @@ public class GameManager : MonoBehaviour
 
     private void SceneChanged(Scene lastScene, Scene currentScene)
     {
-        Debug.Log("Current Scene " + currentScene.name);
         if(currentScene.name == "GameScene")
         {
             Initialize();

@@ -7,14 +7,17 @@ using UnityEngine.Rendering;
 public class BendingManager : MonoBehaviour
 {
     private string keyword = "ENABLE_BENDING";
-
+    public bool enableBendingOnPlay = true;
     // Start is called before the first frame update
     void Awake()
     {
-        if (Application.isPlaying)
-            Shader.EnableKeyword(keyword);
-        else
-            Shader.DisableKeyword(keyword);
+        if(enableBendingOnPlay)
+        {
+            if (Application.isPlaying)
+                Shader.EnableKeyword(keyword);
+            else
+                Shader.DisableKeyword(keyword);
+        }
     }
 
     private void OnEnable()

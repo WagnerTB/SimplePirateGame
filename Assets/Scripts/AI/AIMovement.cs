@@ -5,50 +5,39 @@ using UnityEngine.AI;
 
 public class AIMovement : BasicMovement
 {
-    public AIController aIController;
+    [Header("AI Config")]
+    [SerializeField] private bool _isStopped = false;
+    [SerializeField] private float _stopDistance;
+    [SerializeField] private float _agentMaxDistance = 3;
+    [SerializeField] private float _deathZone = .2f;
+    [SerializeField] private float _faceRotateSpeed = 3;
+
+    [Header("References")]
+    [SerializeField] private AIController _aiController;
     public NavMeshAgent agent;
     public Transform faceTarget;
-
-    public bool isStopped = false;
-    public float range;
 
     void Start()
     {
         agent.transform.SetParent(null);
         faceTarget = agent.transform;
-        if(aIController.target != null)
+        agent.stoppingDistance = _stopDistance;
+        if(_aiController.target != null)
         {
-            agent.SetDestination(aIController.target.position);
+            agent.SetDestination(_aiController.target.position);
         }
     }
 
     private void FixedUpdate()
     {
-        if (!aIController.isActive)
+        if (!_aiController.isActive)
         {
             Stop();
             return;
         }
 
         ShipFollowAgent();
-
-        if(aIController.target.position != agent.destination)
-        {
-            agent.SetDestination(aIController.target.position);
-            agent.isStopped = false;
-        }
-
-        if (agent.destination != transform.position)
-        {
-            if (agent.path.status == NavMeshPathStatus.PathComplete || agent.path.status == NavMeshPathStatus.PathPartial)
-            {
-                if(agent.remainingDistance < range)
-                {
-                    agent.velocity = Vector3.zero;
-                    agent.isStopped = true;
-                }
-            }
-        }
+        agent.SetDestination(_aiController.target.position);
 
         if(NavMesh.Raycast(agent.transform.position,transform.position,out NavMeshHit hit,NavMesh.AllAreas))
         {
@@ -59,14 +48,14 @@ public class AIMovement : BasicMovement
     public override void Stop()
     {
         base.Stop();
-        isStopped = true;
+        _isStopped = true;
     }
 
     public void Release()
     {
         rb.drag = .1f;
         rb.angularDrag = .05f;
-        isStopped = false;
+        _isStopped = false;
     }
 
     private void ShipFollowAgent()
@@ -75,36 +64,38 @@ public class AIMovement : BasicMovement
         var agentPos = new Vector2(agent.transform.position.x,agent.transform.position.z);
         var agentDistance = Vector2.Distance(rbPos, agentPos);
 
-        if (agentDistance < 2)
+        if (agentDistance < _agentMaxDistance)
         {
             agent.isStopped = false;
         }
-        else if (agentDistance >= 3) 
+        else if (agentDistance >= _agentMaxDistance) 
         {
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
         }
 
-        if (agentDistance > .2f)
+        if (agentDistance > _deathZone)
         {
             Rotate(0);
-            Move(1 * ((isStopped)? 0 :  1));
+            Move(1 * ((_isStopped)? 0 :  1));
         }
     }
 
     private void OnDrawGizmos()
     {
-        if(aIController != null && aIController.target != null)
+        if(_aiController != null && _aiController.target != null)
         {
-            Gizmos.DrawWireSphere(agent.transform.position, range);
+            Gizmos.DrawWireSphere(agent.transform.position, _stopDistance);
         }
     }
 
     protected override void Rotate(float input)
     {
         var direction = (faceTarget.transform.position - transform.position).normalized;
-        var rotatePosition = Quaternion.LookRotation(Vector3.up, direction);
-        transform.rotation = rotatePosition;
+        var rotatePosition = Quaternion.LookRotation(-Vector3.up, direction);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotatePosition, Time.deltaTime * _faceRotateSpeed);
+
     }
 
 

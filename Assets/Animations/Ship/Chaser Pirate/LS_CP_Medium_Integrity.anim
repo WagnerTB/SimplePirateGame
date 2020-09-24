@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LS_RP_Low_Integrity
+  m_Name: LS_CP_Medium_Integrity
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,23 +20,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: eb10d4f7c4c466347adafdcaea077ad4, type: 3}
+      value: {fileID: 21300000, guid: 4ba236baf432edb4593fb6859306dc18, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 4f1448d5ccba4bb4989a772355bbe83d, type: 3}
+      value: {fileID: 21300000, guid: 9c232259040747f4ba6f8db16a7dc46f, type: 3}
     attribute: m_Sprite
     path: Sail
-    classID: 212
-    script: {fileID: 0}
-  - curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 4f1448d5ccba4bb4989a772355bbe83d, type: 3}
-    attribute: m_Sprite
-    path: Sail (1)
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 3
@@ -60,17 +53,9 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
-    - serializedVersion: 2
-      path: 4075851643
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: eb10d4f7c4c466347adafdcaea077ad4, type: 3}
-    - {fileID: 21300000, guid: 4f1448d5ccba4bb4989a772355bbe83d, type: 3}
-    - {fileID: 21300000, guid: 4f1448d5ccba4bb4989a772355bbe83d, type: 3}
+    - {fileID: 21300000, guid: 4ba236baf432edb4593fb6859306dc18, type: 3}
+    - {fileID: 21300000, guid: 9c232259040747f4ba6f8db16a7dc46f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

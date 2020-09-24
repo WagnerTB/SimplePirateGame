@@ -305,8 +305,8 @@ MonoBehaviour:
   currentState: 0
   startDelay: 1
   gameElapsedTime: 0
-  _gameSessionTime: 30
-  _enemySpawnTime: 2
+  _gameSessionTime: 60
+  _enemySpawnTime: 5
   spawnManager: {fileID: 1815989741}
   player: {fileID: 0}
 --- !u!1 &116314720
@@ -785,85 +785,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 339416307}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &349340302
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540678, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540679, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 439099418}
-    - target: {fileID: 1055916433789540730, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_Name
-      value: Ranged Enemy Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 1055916433789540730, guid: b677701d157a47a45b41cb3d72df91e5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b677701d157a47a45b41cb3d72df91e5, type: 3}
 --- !u!1 &380883400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,12 +1050,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -827}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &439099418 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5492464073255342282, guid: 1da13897a285a6a4ab5609bc107ee086,
-    type: 3}
-  m_PrefabInstance: {fileID: 675728488916833744}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &499144825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,6 +3721,7 @@ MonoBehaviour:
   - {fileID: 1810655941}
   - {fileID: 1955637702}
   enemies:
+  - {fileID: 8342545543183146284, guid: bde8fe9408438ea4f894b14735936aec, type: 3}
   - {fileID: 1055916433789540679, guid: b677701d157a47a45b41cb3d72df91e5, type: 3}
 --- !u!1 &1840606180
 GameObject:
@@ -4597,6 +4513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080245f33d109e342b501a0e363b3a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableBendingOnPlay: 0
 --- !u!4 &2073042867
 Transform:
   m_ObjectHideFlags: 0

@@ -7,8 +7,21 @@ public abstract class AIBehaviour : ScriptableObject
     [HideInInspector]
     public AIController executedGo;
 
-    public abstract void Start();
-    public abstract void Update();
+    public float maxHp;
 
-    public abstract void OnDrawGizmosSelected();
+    public virtual void Start()
+    {
+        executedGo.target = GameManager.Instance.player.transform;
+
+        executedGo.hp = maxHp;
+        executedGo.maxHp = maxHp;
+    }
+
+    public virtual void Update() { }
+
+    public virtual void OnCollisionEnter(Collision collision) { }
+
+    public virtual void OnTriggerEnter(Collider collider) { }
+
+    public virtual void OnDrawGizmosSelected() { }
 }

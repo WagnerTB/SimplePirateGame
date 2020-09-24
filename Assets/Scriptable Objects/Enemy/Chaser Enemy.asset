@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9732c0cdd821af4bae9827c0f29a7a4, type: 3}
-  m_Name: Ranged Enemy
+  m_Script: {fileID: 11500000, guid: dde2590f10f3bf74894ea8ec52d0359b, type: 3}
+  m_Name: Chaser Enemy
   m_EditorClassIdentifier: 
   executedGo: {fileID: 0}
-  maxHp: 15
-  minDistance: 5
-  cannonFireRate: 2
-  bulletDamage: 5
+  maxHp: 20
+  explosionDamage: 10
+  explosionForce: 50
+  explosionRange: 10
+  explosionGO: {fileID: 3510743817622882428, guid: 7181c1f956c936043b4fa3a90f9becc6,
+    type: 3}

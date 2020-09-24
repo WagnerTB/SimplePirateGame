@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LargeShip_PirateController
+  m_Name: LargeShip_RangedPirateController
   m_Controller: {fileID: 9100000, guid: 8f84cfe04d9f3424e95a2cc81f0b2a53, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 63d0c6c6c3fee2643814d76a635ac6e4, type: 2}

@@ -38,6 +38,22 @@ public class AIController : BasicController
         Destroy(this.gameObject, 3);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(aIBehaviour != null && isActive)
+        {
+            aIBehaviour.OnCollisionEnter(collision);
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (aIBehaviour != null && isActive)
+        {
+            aIBehaviour.OnTriggerEnter(collider);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         if(aIBehaviour != null)

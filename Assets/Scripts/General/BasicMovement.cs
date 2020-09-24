@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class BasicMovement : MonoBehaviour
 {
+    [Header("Basic Config")]
     public float speed = 30;
     public float maxSpeed = 30;
     public float rotateSpeed = 100;

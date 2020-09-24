@@ -32,6 +32,13 @@ AnimationClip:
     path: Sail
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 27cfe1ac7df73004dbcae5a13fd8f452, type: 3}
+    attribute: m_Sprite
+    path: Sail (1)
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 3
   m_WrapMode: 0
   m_Bounds:
@@ -53,8 +60,16 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 4075851643
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: f038b5f7c9344d546a03e655de6a9def, type: 3}
+    - {fileID: 21300000, guid: 27cfe1ac7df73004dbcae5a13fd8f452, type: 3}
     - {fileID: 21300000, guid: 27cfe1ac7df73004dbcae5a13fd8f452, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2

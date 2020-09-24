@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Ranged Enemy " , menuName = "Enemy/Ranged")]
 public class EnemyRanged : AIBehaviour
 {
+    [Space]
     public float minDistance = 2;
     public float cannonFireRate = 1;
     public float bulletDamage = 1;
@@ -13,7 +14,8 @@ public class EnemyRanged : AIBehaviour
     // Start is called before the first frame update
     public override void Start()
     {
-        executedGo.target = FindObjectOfType<PlayerController>().transform;
+        base.Start();
+
         cannons = executedGo.GetComponentsInChildren<Cannon>();
         foreach (var cannon in cannons)
         {
@@ -70,4 +72,5 @@ public class EnemyRanged : AIBehaviour
         }
     }
 
+   
 }

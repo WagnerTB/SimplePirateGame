@@ -35,7 +35,6 @@ public class PlayerController : BasicController
     {
         UpdateCannonsDamage();
     }
-
         
     private void UpdateCannonsDamage()
     {
@@ -85,6 +84,12 @@ public class PlayerController : BasicController
                 cannon.ShootCannon();
             }
         }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        GameManager.onEnd?.Invoke();
     }
 
     public void Score()

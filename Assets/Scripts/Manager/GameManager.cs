@@ -1,6 +1,7 @@
 ﻿using System.Collections;   
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,16 +48,36 @@ public class GameManager : MonoBehaviour
     public float startDelay = 1;
     public float gameElapsedTime = 0;
 
-    [SerializeField] private float gameSessionTime = 30;
-    [SerializeField] private float enemySpawnTime = 1;
+    [SerializeField] private float _gameSessionTime = 30;
+    [SerializeField] private float _enemySpawnTime = 1;
+
+    public static float gameSessionTime { get; private set; }
+    public static float enemySpawnTime { get; private set; }
 
     public SpawnManager spawnManager;
 
+
     private void Start()
     {
-        Invoke(nameof(BeginGame), startDelay);
+        SceneManager.activeSceneChanged += SceneChanged;
+        Initialize();
     }
 
+    private void SceneChanged(Scene lastScene, Scene currentScene)
+    {
+        Debug.Log("Current Scene " + currentScene.name);
+        if(currentScene.name == "GameScene")
+        {
+            Initialize();
+        }
+    }
+
+    private void Initialize()
+    {
+        _gameSessionTime = gameSessionTime;
+        _enemySpawnTime = enemySpawnTime;
+        Invoke(nameof(BeginGame), startDelay);
+    }
 
     // Update is called once per frame
     void Update()
@@ -73,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckGameSessionTime()
     {
-        if (gameElapsedTime >= gameSessionTime) return;
+        if (gameElapsedTime >= gameSessionTime || currentState == GameState.End) return;
 
         gameElapsedTime += Time.deltaTime;
 
@@ -83,23 +104,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetGameSession(float gameSession)
+    public static void SetGameSession(float gameSession)
     {
-        float minGameSessionTime = 1;
-        float maxGameSessionTime = 3;
-        this.gameSessionTime = Mathf.Clamp(gameSession, minGameSessionTime, maxGameSessionTime);
+        float minGameSessionTime = 60;
+        float maxGameSessionTime = 180;
+        float clampedTime = Mathf.Clamp(gameSession, minGameSessionTime, maxGameSessionTime);
+        Debug.Log("From " + gameSessionTime + " To" + clampedTime);
+        gameSessionTime = clampedTime;
     }
 
-    public void SetEnemySpawnTime(float time)
+    public static void SetEnemySpawnTime(float time)
     {
         float minEnemySpawnTime = 1;
+        float maxEnemySpawnTime = 99;
 
-        if(time < minEnemySpawnTime)
-        {
-            Debug.Log("<color=red>Enemy Spawn time need to be at least "+ minEnemySpawnTime + " per second</color>");
-            return;
-        }
+        float clampedSpawnTime = Mathf.Clamp(time, minEnemySpawnTime, maxEnemySpawnTime);
+        Debug.Log("From " + enemySpawnTime + " To" + clampedSpawnTime);
 
-        enemySpawnTime = time;
+        enemySpawnTime = clampedSpawnTime;
     }
 }

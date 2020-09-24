@@ -12,14 +12,15 @@ public class PlayerController : BasicController
     [SerializeField] private Cannon frontalCannon;
     [SerializeField] private Cannon[] lateralCannons;
 
-    [SerializeField] private int playerScore = 0;
+    public int playerScore { get; private set; }
+    [SerializeField] private int _playerScore = 0;
     [SerializeField] private PlayerUI playerUI;
 
     protected override void RegisterEvent()
     {
         base.RegisterEvent();
 
-        GameManager.onEnd += playerMovement.Stop;
+        GameManager.onEndGame += playerMovement.Stop;
         GameManager.onEnemyDie += Score;
     }
 
@@ -27,7 +28,7 @@ public class PlayerController : BasicController
     {
         base.UnRegisterEvent();
 
-        GameManager.onEnd -= playerMovement.Stop;
+        GameManager.onEndGame -= playerMovement.Stop;
         GameManager.onEnemyDie -= Score;
     }
 
@@ -89,12 +90,13 @@ public class PlayerController : BasicController
     public override void Die()
     {
         base.Die();
-        GameManager.onEnd?.Invoke();
+        GameManager.EndGame();
     }
 
     public void Score()
     {
         playerScore++;
+        _playerScore = playerScore;
         playerUI.UpdateScore(playerScore);
     }
 }

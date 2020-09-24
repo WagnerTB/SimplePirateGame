@@ -1,4 +1,5 @@
-﻿using System.Collections;   
+﻿using System;
+using System.Collections;   
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public delegate void GameStatus();
     public static GameStatus onPause;
-    public static GameStatus onEnd;
+    public static GameStatus onEndGame;
 
     public delegate void GameEvents();
     public static GameEvents onEnemyDie;
@@ -56,11 +57,33 @@ public class GameManager : MonoBehaviour
 
     public SpawnManager spawnManager;
 
+    public PlayerController player;
+
 
     private void Start()
     {
         SceneManager.activeSceneChanged += SceneChanged;
+        onPause += PauseGame;
         Initialize();
+    }
+
+    public void ContinueGame()
+    {
+        currentState = GameState.Playing;
+        Time.timeScale = 1;
+    }
+
+    public void PauseGame()
+    {
+        currentState = GameState.Pause;
+        Time.timeScale = 0;
+    }
+
+    public static void EndGame()
+    {
+        GameManager.Instance.currentState = GameState.End;
+        Time.timeScale = 1;
+        onEndGame?.Invoke();
     }
 
     private void SceneChanged(Scene lastScene, Scene currentScene)
@@ -74,8 +97,25 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
-        _gameSessionTime = gameSessionTime;
+        if(gameSessionTime > 0)
+            _gameSessionTime = gameSessionTime;
+        else
+        {
+            SetGameSession(_gameSessionTime);
+        }
+
+        if(enemySpawnTime > 0)
         _enemySpawnTime = enemySpawnTime;
+        else
+        {
+            SetEnemySpawnTime(_enemySpawnTime);
+        }
+
+        if(player == null)
+            player = FindObjectOfType<PlayerController>();
+
+        gameElapsedTime = 0;
+
         Invoke(nameof(BeginGame), startDelay);
     }
 
@@ -100,7 +140,7 @@ public class GameManager : MonoBehaviour
 
         if (gameElapsedTime >= gameSessionTime)
         {
-            onEnd?.Invoke();
+            EndGame();
         }
     }
 
@@ -109,7 +149,7 @@ public class GameManager : MonoBehaviour
         float minGameSessionTime = 60;
         float maxGameSessionTime = 180;
         float clampedTime = Mathf.Clamp(gameSession, minGameSessionTime, maxGameSessionTime);
-        Debug.Log("From " + gameSessionTime + " To" + clampedTime);
+
         gameSessionTime = clampedTime;
     }
 
@@ -119,7 +159,6 @@ public class GameManager : MonoBehaviour
         float maxEnemySpawnTime = 99;
 
         float clampedSpawnTime = Mathf.Clamp(time, minEnemySpawnTime, maxEnemySpawnTime);
-        Debug.Log("From " + enemySpawnTime + " To" + clampedSpawnTime);
 
         enemySpawnTime = clampedSpawnTime;
     }

@@ -20,7 +20,7 @@ public class CannonBullet : MonoBehaviour
 
     private void RegisterEvent()
     {
-        GameManager.onEnd += EndGame;
+        GameManager.onEndGame += EndGame;
     }
 
     private void EndGame()
@@ -32,7 +32,7 @@ public class CannonBullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.onEnd -= EndGame;
+        GameManager.onEndGame -= EndGame;
     }
 
     public void InitializeBullet(float speed = 0,float damage = 0)

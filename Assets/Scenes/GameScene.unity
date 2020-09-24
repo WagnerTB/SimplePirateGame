@@ -305,9 +305,10 @@ MonoBehaviour:
   currentState: 0
   startDelay: 1
   gameElapsedTime: 0
-  gameSessionTime: 30
-  enemySpawnTime: 10
+  _gameSessionTime: 30
+  _enemySpawnTime: 2
   spawnManager: {fileID: 1815989741}
+  player: {fileID: 0}
 --- !u!1 &116314720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 544550881}
+  scoreText: {fileID: 2130199512}
 --- !u!95 &544550881
 Animator:
   serializedVersion: 3

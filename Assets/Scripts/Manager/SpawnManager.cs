@@ -42,12 +42,12 @@ public class SpawnManager : MonoBehaviour
 
     private void RegisterEvents()
     {
-        GameManager.onEnd += StopAllCoroutines;
+        GameManager.onEndGame += StopAllCoroutines;
     }
 
     private void UnRegisterEvents()
     {
-        GameManager.onEnd -= StopAllCoroutines;
+        GameManager.onEndGame -= StopAllCoroutines;
     }
 
     public void BeginEnemySpawn(float spawnTime)

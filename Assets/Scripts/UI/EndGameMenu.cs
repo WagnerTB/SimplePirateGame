@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EndGameMenu : MonoBehaviour
 {
     public Animator animator;
+    public TextMeshProUGUI scoreText;
+
 
     private void Start()
     {
-        GameManager.onEnd += ShowEndGameMenu;
+        GameManager.onEndGame += ShowEndGameMenu;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onEndGame -= ShowEndGameMenu;
     }
 
     public void ShowEndGameMenu()
     {
         animator.SetTrigger("Open");
-        GameManager.Instance.currentState = GameManager.GameState.End;
-        Time.timeScale = 1;
+        scoreText.text = "Final Score: " + GameManager.Instance.player.playerScore;
     }
 
     public void Retry()

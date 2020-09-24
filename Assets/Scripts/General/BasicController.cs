@@ -20,12 +20,12 @@ public class BasicController : MonoBehaviour
 
     protected virtual void RegisterEvent()
     {
-        GameManager.onEnd += EndGame;
+        GameManager.onEndGame += EndGame;
     }
 
     protected virtual void UnRegisterEvent()
     {
-        GameManager.onEnd -= EndGame;
+        GameManager.onEndGame -= EndGame;
     }
 
     private void OnDestroy()
